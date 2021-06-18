@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>广东省科学技术厅|科技数据发布应用平台</title>
+		<meta name="title" content="广东省科学技术厅|科技数据发布应用平台">
+		<!-- 210305 网站标签 -->
+		<meta name="SiteName" content="广东省科学技术厅|科技数据发布应用平台">
+		<meta name="SiteDomain" content="sjfb.gdstc.gd.gov.cn/">
+		<meta name="SiteIDCode" content="4400000090">
+		<!-- 210305 栏目标签 -->
+		<meta name="ColumnName" content="项目立项">
+		<meta name="ColumnDescription" content="科技计划项目立项查询">
+		<meta name="ColumnKeywords" content="科技数据、数据发布、发布应用">
+		<meta name="ColumnType" content="数据发布">
+
+ 		
+ 
+    <link href="/resources/lib/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/lib/datatables/dataTables-1.10.7/plugins/integration/bootstrap/3/dataTables.bootstrap.css">
+	
+ 
+ 
+	<style type="text/css">
+		.dataTables_wrapper .dataTables_processing {  
+		    position: absolute;  
+		    top: 50%;  
+		    left: 50%;  
+		    backgroundColor : '#000';  
+		    border : 'none';  
+		    padding : '2px';  
+		    width: 100%;  
+		    height: 40px;  
+		    margin-left: -50%;  
+		    text-align: center;  
+		    font-size: 1.2em;  
+		    cursor : 'wait';  
+		    z-index: 1;
+		    
+		}
+		
+		.sub-menu {
+			display: none; width:470px;
+		}
+		.sub-menu div { padding:10px 0 0 10px; ; text-align:left; float:left;
+			color: 3c3c3c; width:221px; height:33px;
+			background-image:url(/app/sjkf/images/nav_bg_1202.gif);
+			background-repeat:no-repeat;
+		}
+		.sub-link{
+			font-size:12px;
+		}
+		
+		.sub-menu2 {
+			display: none; width:440px;
+		}
+		.sub-menu2 div { padding:10px 0 0 10px; ; text-align:left; float:left;
+			color: 3c3c3c; width:201px; height:33px;
+			background-image:url(/app/sjkf/images/nav_bg_1202.gif);
+			background-repeat:no-repeat;
+		}
+		.sub-link2{
+			font-size:12px;
+		}
+	</style>
+	<link href="/app/sjkf/images/style.css" rel="stylesheet" type="text/css" /> 
+ 
+
+
+
+</head>
+<body>
+ 
+
+ 
+
+ 
+
+
+ 
+
+ <!--头部、导航--开始-->
+<div class="top">
+  <div style=" margin:0 auto; width:1004px;">
+    <div class="logo"><a href="#"><img src="images/logo.jpg" alt="科技数据开放应用平台 " width="341" height="91" border="0" /></a></div>
+    <div style="background-image:url(/app/sjkf/images/top_bg_2.jpg); background-repeat:no-repeat; background-position:348px -3px;height:137px;">
+      <ul id="top_nav">
+        <li><a href="/app/sjkf/index.jsp" style="color:#2a8bbd" >首页</a></li>
+        <li id="nav_2"><a href="/app/sjkf/index_kjxm.jsp"  style="">科技项目</a></li>
+        <li id="nav_3"><a href="/app/sjkf/index_cxjg.jsp" style="">创新机构</a></li>
+        <li id="nav_4"><a href="/app/sjkf/index_sjtj.jsp" style="">数据统计</a></li>
+        <li id="nav_5"><a href="http://gdstc.gd.gov.cn/zwgk_n/sjjd/index.html"  target="_blank">数据解读</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--头部、导航--结束--> 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+<div  >
+    <table   style="width:98%;margin:12px 0">
+    
+    	<tr>
+    		<td colspan="3" class="text-center"><h3 style="font-weight:bold;font-size:16px;">科技计划项目立项</h3></td>
+    	</tr>
+        <tr>
+            <td class="td_bag col-xs-3" align="right"  >
+            	
+				<div class="btn-group">
+				    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+				    	
+				    	<span id="dropdownTitle">项目名称</span>
+				        <span class="caret"></span>
+				    </button>
+				    <ul class="dropdown-menu" role="menu">
+				        <li>
+				            <a href="javascript:void(0);" onClick="selectSelectType('01');"> 项目名称</a>
+				        </li>
+				        <li>
+				            <a href="javascript:void(0);" onClick="selectSelectType('02');">业务类型</a>
+				        </li>
+				        <li>
+				            <a href="javascript:void(0);" onClick="selectSelectType('03');">承担单位</a>
+				        </li>
+				    </ul>
+				</div>
+
+
+            </td>
+            <td class="col-xs-7">
+                
+                <input  type="text" id="selectText" size="20" maxlength="50" name="selectText" class="form-control" placeholder="请输入关键字" />
+                
+            </td>
+            <td class="td_bag col-xs-2" align="left"  >
+            
+				    <button type="button" class="btn btn-primary search"  >查询</button>
+            
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-info">
+	<table align="center" id="listTable" class="table table-border table-bordered table-bg table-hover table-sort"  style="width:98%;font-size:12px;">
+		<thead>
+		<tr class="text-c">
+			<th align="center">受理编号</th>
+          	<th align="center">项目编号</th>
+          	<th align="center">业务类型</th>
+          	<th align="center">承担单位</th>
+            <th align="center">项目名称</th>
+            <th align="center">项目负责人</th>            
+            <th align="center">下达文号</th>
+          	<th align="center">立项年度</th>
+       
+	  	</tr>
+	  </thead>
+	  <tbody></tbody>
+	
+	</table>
+ 
+</div>
+
+     
+
+        <style>
+        .clearfix {
+        /* 触发 hasLayout */
+        zoom: 1;
+        }
+
+        .clearfix:after {
+        content: "020";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        }
+        .footer {
+        /*background: #eeeeee;*/
+        padding: 60px 0;
+        font-size: 14px;
+        }
+
+        .footer .footerCon {
+        width: 1040px;
+        margin: 0 auto;
+        color: #444444;
+        line-height: 20px;
+        font-size:14px;
+
+        }
+        .footer .footerCon .left {
+        float:left;
+        padding-left: 20px;
+        }
+        .footer .footerCon .right {
+        float:right;
+        padding-left: 20px;
+        border-left: 1px solid #d1d1d1;
+        }
+        .footer .footerCon .right p{
+        margin: 0;
+        }
+        img {
+        vertical-align: middle;
+        }
+        </style>
+        <!--版权说明--开始-->
+        <div style="margin:0 auto;height:154px;background-image:url(images/foot_bg.jpg);">
+
+
+        <div class="footer">
+        <div class="footerCon clearfix">
+        <div class="left" >
+            <script id="_jiucuo_" sitecode='4400000090' src='https://zfwzgl.www.gov.cn/exposure/jiucuo.js'></script>
+            <script type="text/javascript">document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript src='http://dcs.conac.cn/js/20/000/0000/60100042/CA200000000601000420001.js' type='text/javascript'%3E%3C/script%3E"));</script>
+
+        </div>
+        <div class="right" >
+        <p>版权所有：广东省科学技术厅　粤ICP备05018469　粤公网安备44010402000587号 网站标识码4400000090</p>
+        <p>地址：广州市连新路171号科技信息大楼　邮政编码：510033 总机：83163688</p>
+        <p>技术支持：广东省科技创新监测研究中心（广东金科信息网络中心有限责任公司）　电话：83163352</p>
+        <p>技未经用户许可，本网保证绝不会对外公开或向第三方泄漏用户提交的个人信息</p>
+        </div>
+        </div>
+        </div>
+        <!-- <div id="apDiv1"><a class="weixin"
+        href="http://www.gdstc.gov.cn/HTML/zwgk/tzgg/1451530754210-168400348703047037.html" target="_blank"><img
+        src="images/weixin.jpg" alt="微信二维码" width="48" height="55" /></a></div>
+        -->
+        </div>
+
+
+        <script language="javascript">
+        function ccolor(x)
+        {
+        x.style.backgroundColor="#e2f7ff";
+        }
+
+        function tcolor(x)
+        {
+        x.style.backgroundColor="#ffffff";
+        }
+
+        </script> 
+ 
+ 
+<script type="text/javascript" charset="utf-8" src="/resources/lib/jquery/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/resources/lib/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/resources/lib/layer-v2.4/layer.js" ></script>
+
+<script type="text/javascript" charset="utf-8" src="/resources/lib/datatables/1.10.0/jquery.dataTables.min.js" ></script>
+<!--
+ <script type="text/javascript" charset="utf-8" src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js" ></script>
+
+ -->
+<script type="text/javascript" charset="utf-8" src="/resources/lib/datatables/dataTables-1.10.7/plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+ 
+ 
+<script type="text/javascript" charset="utf-8" src="/app/sjkf/js/datatables_config.js"></script>
+ 
+<script type="text/javascript" charset="utf-8" src="/resources/lib/layer-v2.4/layer.js"></script>
+
+ 
+<script type="text/javascript"> 
+$(document).ready(function() { 
+
+	$('#nav_2').hover(function() { 
+	
+		$('.sub-menu').css('display', 'block'); 
+	
+	}, function() {
+		
+		$('.sub-menu').css('display', 'none'); 
+	
+	}); 
+	
+	$('#nav_3').hover(function() { 
+	
+		$('.sub-menu2').css('display', 'block'); 
+	
+	}, function() {
+		
+		$('.sub-menu2').css('display', 'none'); 
+	
+	}); 
+	
+}); 
+ 
+</script> 
+ 
+ 
+ 
+</body>
+
+<script type="text/javascript">
+	var webBasePath = '';
+	var defaultSelectType = '01';//默认为项目名称查询
+	function selectSelectType(type){
+		var title = '项目名称';
+		switch(type){
+			case '01' :
+				title = '项目名称';break;
+			case '02' :
+				title = '业务类型';break;
+			case '03' :
+				title = '承担单位';break;
+		}
+		defaultSelectType = type;
+		$('#dropdownTitle').text(title);
+	}
+	
+	
+	var tables;
+	$(function(){
+		
+		tables = buildDataTables({
+			table_id:'#listTable',	
+			ajax: {
+	            "type": "post",
+	            "url":webBasePath + "/sjkf/kjxm?const_dict_id=101003",
+	            "data":function(d){            	
+ 					d.selectType = defaultSelectType;
+ 					d.selectText = $('#selectText').val();
+	            }
+	    	},
+	    	
+	    	 
+	    	columns : [
+
+	    		        {
+	    					data : "num1",
+	    					sWidth : "100px"
+	    		        },
+	    		        {
+	    					data : "num2",
+	    					sWidth : "100px"
+	    		        },
+	    		        {
+	    					mData : "grantName",
+	    					orderable : false, // 禁用排序
+	    					sDefaultContent : "",
+	    					sWidth : "150px"  					
+	    				},
+	    				{
+	    					data : "orgName",
+	    					sWidth : "250px"
+	    		        },
+	    		        {
+	    					data : "zhTitle",
+	    					sWidth : "300px"
+	    		        },{
+	    					mData : "psnName1",
+	    					orderable : false, // 禁用排序
+	    					sDefaultContent : "",
+	    					sWidth : "80px"
+	    				     
+	    					
+	    				},
+	    				{
+	    					data : "num3",
+	    					sWidth : "100px"
+	    		        },
+	    				{
+	    					data : "year",
+	    					sWidth : "60px"
+	                  
+	    		        }
+
+	    				
+	    	]
+		});
+		
+		$(document).keyup(function(event){
+		  if(event.keyCode ==13){
+		    $(".search").trigger("click");
+		  }
+		});
+		
+	});
+	$(document).delegate('.search','click',function() {
+		tables.ajax.reload();	
+	});
+
+</script>
+
+
+</html>
