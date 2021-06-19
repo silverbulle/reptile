@@ -10,9 +10,10 @@ import xlutils
 from xlutils.copy import copy
 import openpyxl as op
 
+
 page = 1
 driver = webdriver.Chrome()
-
+w = open('data.txt', 'w', encoding='utf-8')
 #  http://sjfb.gdstc.gd.gov.cn/sjkf/kjxm?const_dict_id=101003
 try:
     driver.get('http://sjfb.gdstc.gd.gov.cn/app/sjkf/kjxm_101003.jsp')
@@ -25,7 +26,7 @@ try1 = re.findall('(?<=<td>).*?(?=</td>)', result)
 
 # for i in try1:
 #     print(i, '\n')
-cnt = 1
+cnt = 0
 bg = op.load_workbook(r"data.xlsx")
 sheet = bg["Sheet1"]
 while page < 1584:
@@ -41,13 +42,14 @@ while page < 1584:
 
     data = re.findall('(?<=<td>).*?(?=</td>)', result)
     print(data)
-    num = 0
-    for row in range(cnt, 47506):
+    num = 1
+    for row in range(cnt+1, 47506):
         cnt += 1
         for column in range(1, 9):
+            w.writelines(data[num] + '#')
             sheet.cell(row, column, data[num])
             num += 1
-            if num == 239:
+            if num == 240:
                 bg.save("data.xlsx")
                 break
         if cnt % 30 == 0:
@@ -66,5 +68,6 @@ while page < 1584:
 
 # comment = page.find_all(r'listTable_wrapper\S+</div>', class_='a-size-large a-color-base')
 # print(page)
+w.close()
 driver.close()
 driver.quit()
